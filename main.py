@@ -5,7 +5,7 @@ def cerrar_ventana():
 	ventana.quit()
 	
 def iniciar_juego():
-	ventana.detroy()
+	ventana.destroy()
 	game.Game()
 ventana = tk.Tk()
 ventana.title("menu")
