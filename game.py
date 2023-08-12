@@ -12,13 +12,14 @@ def Game():
             self.rect.center = (x, y)
         
         def update(self):
-            self.rect.y -= 3
+            self.rect.y -= 2
             
     class Enemigo(pygame.sprite.Sprite):
         def __init__(self,medida):
             super().__init__()
             self.image = pygame.transform.scale(pygame.image.load("imagenes/enemigo.png").convert(), (115, 115))
             self.rect = self.image.get_rect()
+            self.image.set_colorkey((0,0,0))
             self.rect.centerx = random.randint(0, medida[0])
             self.rect.centery = -50 
 
@@ -29,7 +30,7 @@ def Game():
     pos_y = 800
     x_speed = 0
     y_speed = 0
-    medida = (800, 1000)
+    medida = (500,700)
     color = (0, 0, 43)
     var = True
     time_inicial = 0
@@ -52,18 +53,18 @@ def Game():
                 var = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x_speed = -2
+                    x_speed = -1
                 if event.key == pygame.K_RIGHT:
-                    x_speed = 2
+                    x_speed = 1
                 if event.key == pygame.K_DOWN:
-                    y_speed = 2
+                    y_speed = 1
                 if event.key == pygame.K_UP:
-                    y_speed = -2
+                    y_speed = -1
                 if event.key == pygame.K_SPACE:
                     current_time = pygame.time.get_ticks()
                     if current_time - time_inicial >= espera_time:
                         time_inicial = current_time
-                        laser = Laser(pos_x + 75, pos_y - 75 )
+                        laser = Laser(pos_x + 70, pos_y - 10 )
                         sprites.add(laser)
                         lasers.add(laser)
             if event.type == pygame.KEYUP:
@@ -94,7 +95,7 @@ def Game():
         lasers.draw(ven_go)
         
 
-        if random.randint(0,500 ) < 1:
+        if random.randint(0,800 ) < 1:
             enemigo = Enemigo(medida)
             sprites.add(enemigo)
             
